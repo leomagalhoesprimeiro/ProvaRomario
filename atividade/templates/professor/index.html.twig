@@ -1,0 +1,37 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Professor index{% endblock %}
+
+{% block body %}
+    <h1>Professor index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nome</th>
+                <th>Projeto_status</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for professor in professors %}
+            <tr>
+                <td>{{ professor.id }}</td>
+                <td>{{ professor.nome }}</td>
+                <td>{{ professor.projetoStatus }}</td>
+                <td>
+                    <a href="{{ path('professor_show', {'id': professor.id}) }}">show</a>
+                    <a href="{{ path('professor_edit', {'id': professor.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="4">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('professor_new') }}">Create new</a>
+{% endblock %}
